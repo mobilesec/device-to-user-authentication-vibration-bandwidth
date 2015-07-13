@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">VibrationBandwidth</string>
+    <string name="trigger_vibration_1">Trigger vibration 1</string>
+    <string name="trigger_vibration_2">Trigger vibration 2</string>
+    <string name="trigger_vibration_3">Trigger vibration 3</string>
+    <string name="trigger_vibration_4">Trigger vibration 4</string>
+    
+</resources>
