@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <!-- Search, should appear as action button -->
+    
+    <item android:id="@+id/action_goto_vibration_test"
+          android:icon="@android:drawable/ic_media_next"
+          android:title="@string/goto_vibration_test"/>
+</menu>

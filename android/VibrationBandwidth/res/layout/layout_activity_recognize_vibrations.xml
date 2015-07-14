@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+	<TextView
+	    android:id="@+id/textview_status"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="15sp" />
+
+	<Button
+        android:id="@+id/button_new_random_pattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@android:drawable/ic_menu_revert"
+        android:text="@string/chose_new_random_pattern"
+        android:textSize="15sp" />
+		
+	<TextView
+	    android:id="@+id/textview_chosen_vibration"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="20sp" />
+	
+	<Button
+        android:id="@+id/button_play_chosen_pattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@android:drawable/ic_media_play"
+        android:text="@string/play_chosen_pattern"
+        android:textSize="15sp" />
+	
+	<Button
+	    android:id="@+id/button_recognize_pattern"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@android:drawable/ic_media_play"
+	    android:text="@string/recognize_pattern"
+	    android:textSize="15sp" />
+
+</LinearLayout>

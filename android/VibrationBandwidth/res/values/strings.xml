@@ -1,9 +1,22 @@
 <resources>
 
     <string name="app_name">VibrationBandwidth</string>
-    <string name="trigger_vibration_1">Trigger vibration 1</string>
-    <string name="trigger_vibration_2">Trigger vibration 2</string>
-    <string name="trigger_vibration_3">Trigger vibration 3</string>
-    <string name="trigger_vibration_4">Trigger vibration 4</string>
-    
+    <string name="trigger_vibration">Vibration %1$s %2$s</string>
+    <string name="chose_new_vibration_pattern">New random vibration pattern</string>
+    <string name="goto_vibration_test">Test vibration pattern</string>
+    <string name="goto_vibration_recognition">Vibration recognition</string>
+    <string name="recognize_vibrations">Recognize vibrations</string>
+    <string name="test_vibrations">Test all vibration pattern</string>
+    <string name="chose_new_random_pattern">Create new random vibration pattern</string>
+    <string name="play_chosen_pattern">Play the created vibration pattern</string>
+    <string name="recognize_pattern">Recognize the vibration pattern</string>
+    <string name="is_chosen_pattern_question">Was this the created vibration pattern?</string>
+    <string name="enter_data_label">Test finished! You decided correctly for %1$d out of %2$d vibration samples. Please enter the label for the data to be stored.</string>
+    <string name="status_create_random_pattern">Please create a new random vibration pattern.</string>
+    <string name="status_learn_random_pattern">Please play the created pattern %1$d more times to learn how it feels.</string>
+    <string name="status_repeat_random_pattern">%1$s%2$s more samples in the test. Please play the created pattern once more to recap how it feels before continuing.</string>
+    <string name="status_repeat_or_recognize">You may either repeat the pattern further, or decide if another pattern (that we present to you once only) actully is the learned pattern.</string>
+    <string name="vibration_recognition_test_length">Amount of test samples a created vibration sample is compared against.</string>
+    <string name="vibration_recognition_min_req_repeats">How often newly created vibration samples have to be repeated before vibration recognition becomes available.</string>
+    <string name="settings">Settings</string>
 </resources>
