@@ -119,7 +119,8 @@ public class RecognizeVibrations extends Activity {
 				++mAmountRandomPatternPlayed;
 				mChosenPatternPlayed = false;
 				// generate random pattern, vibrate
-				final int[] randomVibrationPattern = VibrationUtil.generateRandomPattern2Groups3Vibrations();
+				final int[] randomVibrationPattern = VibrationUtil.generateRandomPattern2Groups3Vibrations(mVibrationPattern,
+						5f / 16f);
 				VibrationUtil.vibrate(RecognizeVibrations.this, VibrationUtil.generateVibrationPattern(randomVibrationPattern));
 				// ask what user thinks
 				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -195,6 +196,7 @@ public class RecognizeVibrations extends Activity {
 							mTextViewChosenVibration.setText("");
 							mVibrationPattern = null;
 							mAmountRandomPatternPlayed = null;
+							mAmountChosenPatternPlayed = 0;
 							mUserAnswersCorrect = null;
 							mRandomPattern = null;
 							mVibrationState = VibrationState.CHOOSE_PATTERN;

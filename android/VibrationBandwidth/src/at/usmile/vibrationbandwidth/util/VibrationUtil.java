@@ -103,6 +103,13 @@ public class VibrationUtil {
 		return new int[] { r1, r2 };
 	}
 
+	public static int[] generateRandomPattern2Groups3Vibrations(int[] _defaultPattern, float _chanceToUseDefault) {
+		if (RANDOM.nextFloat() < _chanceToUseDefault) {
+			return _defaultPattern.clone();
+		}
+		return generateRandomPattern2Groups3Vibrations();
+	}
+
 	public static void vibrate(final Activity _activity, final long[] _vibrationPattern) {
 		Vibrator v = (Vibrator) _activity.getSystemService(Context.VIBRATOR_SERVICE);
 		if (v.hasVibrator()) {

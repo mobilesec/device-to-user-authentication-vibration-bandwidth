@@ -44,7 +44,7 @@ public abstract class SharedPrefs {
 
 	public static int getVibrationRecognitionTestLength(Context _context) {
 		return _context.getSharedPreferences(SharedPrefs.SHARED_PREFENCES_ID, Context.MODE_PRIVATE).getInt(
-				SharedPrefs.VIBRATION_RECOGNITION_TEST_LENGTH, 24);
+				SharedPrefs.VIBRATION_RECOGNITION_TEST_LENGTH, 12);
 	}
 
 	public static int getVibrationRecognitionMinReqPatternRepeats(Context _context) {
