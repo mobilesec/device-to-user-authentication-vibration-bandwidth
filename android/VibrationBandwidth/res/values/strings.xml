@@ -19,4 +19,5 @@
     <string name="vibration_recognition_test_length">Amount of test samples a created vibration sample is compared against.</string>
     <string name="vibration_recognition_min_req_repeats">How often newly created vibration samples have to be repeated before vibration recognition becomes available.</string>
     <string name="settings">Settings</string>
+    <string name="last_filename">Last filename: %1$s</string>
 </resources>

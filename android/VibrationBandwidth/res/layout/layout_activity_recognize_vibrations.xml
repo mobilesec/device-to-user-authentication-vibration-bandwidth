@@ -40,4 +40,10 @@
 	    android:text="@string/recognize_pattern"
 	    android:textSize="15sp" />
 
+	<TextView
+	    android:id="@+id/textview_last_filename"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:textSize="15sp" />
+
 </LinearLayout>

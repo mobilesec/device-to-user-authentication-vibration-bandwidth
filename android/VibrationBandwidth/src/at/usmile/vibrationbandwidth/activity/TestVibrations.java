@@ -1,4 +1,4 @@
-package at.usmile.vibratonbandwidth.activity;
+package at.usmile.vibrationbandwidth.activity;
 
 import android.app.Activity;
 import android.content.Intent;

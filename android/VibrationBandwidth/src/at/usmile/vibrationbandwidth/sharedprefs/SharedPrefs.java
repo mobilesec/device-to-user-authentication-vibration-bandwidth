@@ -22,7 +22,7 @@ public abstract class SharedPrefs {
 	// .putBoolean(SharedPrefs.USE_ENERGY_NORMALIZATION, _isChecked).commit();
 
 	// ==============================================================================================================
-	// STATICS
+	// STATIC
 
 	// ==============================================================================================================
 	// SHARED PREFERENCE STRINGS

@@ -1,4 +1,4 @@
-package at.usmile.vibratonbandwidth.activity;
+package at.usmile.vibrationbandwidth.activity;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,6 +72,8 @@ public class RecognizeVibrations extends Activity {
 
 	private String			mAnswerFeedback				= "";
 
+	private TextView		mTextViewLastFilename;
+
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
@@ -82,6 +84,7 @@ public class RecognizeVibrations extends Activity {
 		// UI
 		mTextViewChosenVibration = (TextView) findViewById(R.id.textview_chosen_vibration);
 		mTextViewStatus = (TextView) findViewById(R.id.textview_status);
+		mTextViewLastFilename = (TextView) findViewById(R.id.textview_last_filename);
 		mButtonNewRandomPattern = (Button) findViewById(R.id.button_new_random_pattern);
 		mButtonNewRandomPattern.setOnClickListener(new OnClickListener() {
 			@Override
@@ -178,6 +181,8 @@ public class RecognizeVibrations extends Activity {
 					switch (which) {
 						case DialogInterface.BUTTON_NEUTRAL:
 							String label = editText.getText().toString();
+							mTextViewLastFilename.setText(String.format(
+									RecognizeVibrations.this.getResources().getText(R.string.last_filename).toString(), label));
 							// store data
 							String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 							String fileName = "VibrationRecognition_" + label + "_" + mVibrationPattern[0] + ""
