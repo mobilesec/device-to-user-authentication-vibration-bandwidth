@@ -94,10 +94,10 @@ for(i in 1:length(vibration_data_per_user)) {
 # TPR_TNR_per_user$TPR[is.infinite(TPR_TNR_per_user$TPR)] <- -1
 # TPR_TNR_per_user$TNR[is.infinite(TPR_TNR_per_user$TNR)] <- -1
 svg(filename = 'plots/boxplot_TPR_all_users_per_code.svg', width = width, height = height, bg=bg)
-  with(TPR_TNR_per_user, boxplot(TPR~code))
+  with(TPR_TNR_per_user, boxplot(TPR~code, ylim=c(0,1)))
 dev.off()
 svg(filename = 'plots/boxplot_TNR_all_users_per_code.svg', width = width, height = height, bg=bg)
-  with(TPR_TNR_per_user, boxplot(TNR~code))
+  with(TPR_TNR_per_user, boxplot(TNR~code, ylim=c(0,1)))
 dev.off()
 
 TPR_TNR_per_user2.1 <- TPR_TNR_per_user[,1:3]
