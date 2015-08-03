@@ -13,6 +13,7 @@
 ####################################################################################
 
 library(plyr)
+library(lattice)
 
 dir.create('plots/')
 bg <- 'transparent'
@@ -32,18 +33,30 @@ vibration_data <- ldply(vibration_data)
 vibration_data <- vibration_data[order(as.character(vibration_data$RealPattern)),]
 vibration_data$RealPattern <- as.integer(as.character(vibration_data$RealPattern)) # makes later sorting easier
 
-vibration_data_per_code <- split(vibration_data, f = vibration_data$RealPattern)
-# code_data <- lapply(vibration_data_per_code, FUN = function(d) {
+# confusion matrix - use only with enough data! otherwise patterns with smaller amounts of data will look like recognized badly!
+confusion_matrix <- with(vibration_data, table(RealPattern, Pattern, Correct))
+confusion_matrix_relative <- (confusion_matrix[,,1]/(confusion_matrix[,,1]+confusion_matrix[,,2]))
+sink('plots/confusion_matrix.log')
+  confusion_matrix_relative
+sink()
+# different 
+heatmap(confusion_matrix_relative)
+image(confusion_matrix_relative)
+svg('plots/confusion_matrix.svg', bg=bg, width=5, height=4.5)
+  levelplot(confusion_matrix_relative, col.regions = gray((64:256)/256), cuts=8, ylab='Presented pattern', xlab='Assigned pattern')
+dev.off()
+
+vibration_data_per_real_code <- split(vibration_data, f = vibration_data$RealPattern)
+# code_data <- lapply(vibration_data_per_real_code, FUN = function(d) {
 code_data <- data.frame()
-for(i in 1:length(vibration_data_per_code)) {
-  d <- vibration_data_per_code[[i]]
-  code <- names(vibration_data_per_code)[[i]]
+for(i in 1:length(vibration_data_per_real_code)) {
+  d <- vibration_data_per_real_code[[i]]
+  code <- names(vibration_data_per_real_code)[[i]]
   correct_ratio <- as.numeric(sum(d$Correct == 'true')) / dim(d)[[1]]
   code_data <- rbind(code_data, data.frame(code, correct_ratio))
 }
 
 # barplot of code correctnes over all users
-bg = 'transparent'
 svg(filename = 'plots/barplot_codes_correct_ratio.svg', width = width, height = height, bg=bg)
   with(code_data, barplot(height = correct_ratio, names.arg = code, ylim = c(0,1))) #, col = code))
 dev.off()
