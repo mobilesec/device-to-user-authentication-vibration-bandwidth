@@ -78,6 +78,20 @@ for(i in 1:length(vibration_data_per_real_code)) {
   code_data <- rbind(code_data, data.frame(code, correct_ratio))
 }
 
+# boxplot of average recognition performance per code over users
+recognition_correctness_per_code_and_participant <- data.frame()
+recognitions_per_pattern_and_participant <- with(vibration_data, table(Correct, Participant, RealPattern))
+for (i in 1:(dim(recognitions_per_pattern_and_participant)[[3]])) {
+  recognitions <- recognitions_per_pattern_and_participant[,,i]
+  correctness <- recognitions[1,]/colSums(recognitions)
+  recognition_correctness_per_code_and_participant <- rbind(recognition_correctness_per_code_and_participant, (correctness))
+}
+recognition_correctness_per_code_and_participant <- t(recognition_correctness_per_code_and_participant)
+names(recognition_correctness_per_code_and_participant) <- attributes(recognitions_per_pattern_and_participant)$dimnames$RealPattern
+svg(filename = 'plots/boxplot_codes_correct_ratio.svg', width = width, height = height, bg=bg)
+  with(user_data, boxplot(correct_ratio~code, ylim=c(0,1)))
+dev.off()
+
 # code correctness
 sink('plots/code_correct_ratio.log')
   code_data
