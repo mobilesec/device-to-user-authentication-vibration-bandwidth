@@ -33,6 +33,20 @@ vibration_data <- ldply(vibration_data)
 vibration_data <- vibration_data[order(as.character(vibration_data$RealPattern)),]
 vibration_data$RealPattern <- as.integer(as.character(vibration_data$RealPattern)) # makes later sorting easier
 
+# look at distribution of sampled assigned and tested patterns
+pattern_distribution_sampling_results <- with(vibration_data, table(Pattern, RealPattern))
+svg('plots/pattern_distribution_sampling_results.svg', bg=bg)
+  levelplot(pattern_distribution_sampling_results, col.regions = gray((64:256)/256), cuts = 20)
+dev.off()
+
+# amount of recognition of assigned patterns and non-assigned patterns (T and N class size)
+sink('plots/T_and_N_class_size.log')
+  print('P class size')
+  sum(diag(pattern_distribution_sampling_results))
+  print('N class size')
+  sum(pattern_distribution_sampling_results)-sum(diag(pattern_distribution_sampling_results))
+sink()
+
 # confusion matrix - use only with enough data! otherwise patterns with smaller amounts of data will look like recognized badly!
 confusion_matrix <- with(vibration_data, table(RealPattern, Pattern, Correct))
 confusion_matrix_relative <- (confusion_matrix[,,1]/(confusion_matrix[,,1]+confusion_matrix[,,2]))
@@ -43,8 +57,16 @@ sink()
 heatmap(confusion_matrix_relative)
 image(confusion_matrix_relative)
 svg('plots/confusion_matrix.svg', bg=bg, width=5, height=4.5)
-  levelplot(confusion_matrix_relative, col.regions = gray((64:256)/256), cuts=8, ylab='Presented pattern', xlab='Assigned pattern')
+  levelplot(confusion_matrix_relative, col.regions = gray((64:256)/256), cuts=11, ylab='Presented pattern', xlab='Assigned pattern')
 dev.off()
+# mean and median of recognizing assigned pattern correctly
+sink('plots/correct_recognition_of_assigend_pattern')
+  diag(confusion_matrix_relative)
+  print('mean')
+  mean(diag(confusion_matrix_relative))
+  print('median')
+  median(diag(confusion_matrix_relative))
+sink()
 
 vibration_data_per_real_code <- split(vibration_data, f = vibration_data$RealPattern)
 # code_data <- lapply(vibration_data_per_real_code, FUN = function(d) {
@@ -56,10 +78,20 @@ for(i in 1:length(vibration_data_per_real_code)) {
   code_data <- rbind(code_data, data.frame(code, correct_ratio))
 }
 
+# code correctness
+sink('plots/code_correct_ratio.log')
+  code_data
+  print('mean')
+  mean(code_data$correct_ratio)
+  print('median')
+  median(code_data$correct_ratio)
+sink()
+
 # barplot of code correctnes over all users
 svg(filename = 'plots/barplot_codes_correct_ratio.svg', width = width, height = height, bg=bg)
   with(code_data, barplot(height = correct_ratio, names.arg = code, ylim = c(0,1))) #, col = code))
 dev.off()
+
 
 vibration_data_per_user <- split(vibration_data, f = vibration_data$Participant)
 user_data <- data.frame()
