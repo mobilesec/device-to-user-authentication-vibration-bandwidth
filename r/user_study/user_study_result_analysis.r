@@ -18,7 +18,7 @@ library(lattice)
 dir.create('plots/')
 bg <- 'transparent'
 width <- 9
-height <- 3.8 # 3 3.8
+height <- 3.9 # 3 3.8
 
 files <- dir('.', pattern='.csv')
 vibration_data <- lapply(files, FUN = function(f) {
@@ -88,8 +88,8 @@ for (i in 1:(dim(recognitions_per_pattern_and_participant)[[3]])) {
 }
 recognition_correctness_per_code_and_participant <- t(recognition_correctness_per_code_and_participant)
 names(recognition_correctness_per_code_and_participant) <- attributes(recognitions_per_pattern_and_participant)$dimnames$RealPattern
-svg(filename = 'plots/boxplot_codes_correct_ratio.svg', width = width, height = height, bg=bg)
-  with(user_data, boxplot(correct_ratio~code, ylim=c(0,1)))
+svg(filename = 'plots/boxplot_recognition_correctness_per_code_and_participant.svg', width = width, height = height, bg=bg)
+  with(user_data, boxplot(recognition_correctness_per_code_and_participant, ylim=c(0.5,1)))
 dev.off()
 
 # code correctness
